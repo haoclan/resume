@@ -8,15 +8,29 @@
 %%%-------------------------------------------------------------------
 -module(test1).
 -author("Administrator").
--export([start/0]).
+-compile(export_all).
+
+start2()->
+    ?MODULE.
+
+start() ->
+  spawn(fun loop/0).
+
+
+
+
+loop() ->
+  receive
+    after 5000->
+    io:format("hello ~n")
+  end.
+
+
+
+  %lists:foldl(fun myadd/2,0,[1,2,3,4,5]).
 
 myadd(X,Tempsum) ->
   X + Tempsum.
-
-
-start() ->
-  lists:foldl(fun myadd/2,0,[1,2,3,4,5]).
-
 
 %% API
 
